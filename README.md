@@ -1,73 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🎬 Movie Explorer
 
-## Getting Started
+A simple Movie Explorer web application built with Next.js (App Router + TypeScript).
 
-First, run the development server:
+Users can search for movies, view detailed information, and manage a favorites list with personal ratings and notes. Movie data is fetched from the TMDB API through a secure server-side proxy.
 
-```bash
+🌐 Live Demo:
+
+https://movie-explorer-phi-rose.vercel.app/
+
+🚀 Features:
+
+🔍 Search movies by title
+
+📄 View detailed movie information (poster, overview, year, runtime)
+
+⭐ Add / remove favorites
+
+📝 Add a personal rating (1–5) and optional note
+
+💾 Favorites persist using LocalStorage
+
+🔐 Secure API integration via server-side proxy
+
+⚠ Graceful handling of empty results and API errors
+
+🛠 Tech Stack:
+
+Next.js (App Router)
+
+React
+
+TypeScript
+
+Next.js Route Handlers (API proxy)
+
+LocalStorage (client-side persistence)
+
+Vercel (deployment)
+
+⚙ Setup & Run Locally:
+
+1️⃣ Clone Repository
+git clone https://github.com/YOUR_USERNAME/movie-explorer.git
+cd movie-explorer
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Add Environment Variable
+
+Create a .env.local file in the project root:
+
+TMDB_ACCESS_TOKEN=your_tmdb_v4_read_access_token
+
+
+You can generate this token from:
+https://www.themoviedb.org/settings/api
+
+⚠ Use the v4 Read Access Token, not the v3 API key.
+
+4️⃣ Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 
+Open:
+http://localhost:3000
 
-# 🎬 Movie Explorer
+🧠 Technical Decisions & Tradeoffs:
 
-A simple Movie Explorer web app built with Next.js.
+1) API Proxy (Next.js Route Handlers)
 
-Users can search movies, view details, and manage a favorites list with personal ratings and notes.
+The app uses server-side API routes to proxy TMDB requests instead of calling TMDB directly from the browser.
 
----
+Why: Keeps the API token secure and avoids exposing credentials client-side.
+Tradeoff: Adds a small backend layer but improves security and separation of concerns.
 
-## 🚀 Features
+2) State Management (React Context)
 
-- 🔍 Search movies by title (TMDB API)
-- 📄 View movie details (poster, overview, year, runtime)
-- ⭐ Add/remove favorites
-- 📝 Personal rating (1–5) and optional note
-- 💾 Favorites persist via LocalStorage
-- 🔐 API key secured via Next.js server-side proxy
-- ⚠ Graceful handling of empty results and network errors
+Favorites are managed using React Context.
 
----
+Why: Lightweight and sufficient for a small app with shared state across pages.
+Tradeoff: Not ideal for very large-scale state management, but appropriate here.
 
-## 🛠 Tech Stack
+3) Persistence (LocalStorage)
 
-- Next.js (App Router)
-- React + TypeScript
-- Next.js Route Handlers (API proxy)
-- LocalStorage (client persistence)
+Favorites, ratings, and notes are stored in LocalStorage.
 
----
+Why: Simple, fast, and satisfies persistence requirements without backend complexity.
+Tradeoff: Data is device-specific and not shared across users.
 
-## 🔐 Environment Setup
+📌 Known Limitations:
 
-Create `.env.local` in the root:
+1) Search only shows the first set of results, and the app does not optimize or delay search input to reduce API calls.
+
+2) Favorites are stored only in LocalStorage and are device-specific. 
 
 
+3) There is no server-side persistence or caching layer. 
+
+4) Styling and accessibility are kept minimal, as the focus was on functionality within the time constraint.
+
+🚀 Improvements With More Time
+
+If given additional time, I would:
+
+1) Add pagination to show more search results.
+
+2) Store favorites on a server so they work across devices.
+
+3) Add a small delay to search to reduce extra API calls.
+
+4) Improve accessibility for screen readers and keyboard users.
+
+5) Cache results to make the app faster.
+
+6) Improve the design and responsiveness.
