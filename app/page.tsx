@@ -69,7 +69,7 @@ export default function HomePage() {
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by title (e.g., Inception)"
+          placeholder="Search by title (e.g., Batman)"
           style={{
             padding: 10,
             minWidth: 320,
